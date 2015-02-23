@@ -20,7 +20,6 @@ public class LineReader {
 				System.out.println(line);
 				--amountOfLines;
 			}
-				
 		}
 		reader.close();
 	}
