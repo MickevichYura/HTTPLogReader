@@ -13,14 +13,14 @@ public class LineReader {
 		LineNumberReader reader = new LineNumberReader(new FileReader(args[2]));
 
 		String line;
-		int count = 1;
 		while ((line = reader.readLine()) != null
-				&& count - startLine != amountOfLines) {
+				&& amountOfLines != 0) {
 
-			if (count >= startLine)
+			if (reader.getLineNumber() >= startLine){
 				System.out.println(line);
-
-			count++;
+				--amountOfLines;
+			}
+				
 		}
 		reader.close();
 	}
