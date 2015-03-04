@@ -1,5 +1,7 @@
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.PrintWriter;
@@ -17,7 +19,8 @@ public class LineReader {
 
 		List<Log> logs = new ArrayList<Log>();
 
-		PrintWriter out = new PrintWriter(args[3]);
+		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
+				args[3])));
 		String line;
 		while ((line = reader.readLine()) != null && amountOfLines != 0) {
 
