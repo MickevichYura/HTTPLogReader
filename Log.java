@@ -56,7 +56,6 @@ public class Log {
 	}
 
 	public Log(String line) {
-		line = line.replaceAll("\r\n", " ");
 		char quotationMark = '\"';
 		int indexOfQuotationMark = line.indexOf(quotationMark);
 		int lastIndexOfQuotationMark = line.lastIndexOf(quotationMark);
@@ -67,13 +66,8 @@ public class Log {
 				lastIndexOfQuotationMark) + quotationMark;
 		this.replyCode = Integer.parseInt(line.substring(
 				lastIndexOfQuotationMark + 2, lastIndexOfSpace));
-
-		try {
-			this.replyBytes = Integer
-					.parseInt(line.substring(lastIndexOfSpace + 1));
-		} catch (NumberFormatException e) {
-			this.replyBytes = 0;
-		}
+		this.replyBytes = Integer
+				.parseInt(line.substring(lastIndexOfSpace + 1));
 
 		String timestampPattern = "[dd/MMM/yyyy:HH:mm:ss Z]";
 		this.timestamp = new SimpleDateFormat(timestampPattern, Locale.US)
