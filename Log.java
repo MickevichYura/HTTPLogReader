@@ -55,24 +55,28 @@ public class Log {
 		this.replyBytes = replyBytes;
 	}
 
-	public Log(String line) {
+	public Log() {
+
+	}
+	
+	public void parseString(String line) {
 		char quotationMark = '\"';
 		int indexOfQuotationMark = line.indexOf(quotationMark);
 		int lastIndexOfQuotationMark = line.lastIndexOf(quotationMark);
 		int lastIndexOfSpace = line.lastIndexOf(" ");
-
+		
 		this.host = line.substring(0, line.indexOf(" - - "));
 		this.request = line.substring(indexOfQuotationMark,
 				lastIndexOfQuotationMark) + quotationMark;
 		this.replyCode = Integer.parseInt(line.substring(
 				lastIndexOfQuotationMark + 2, lastIndexOfSpace));
-				
+
 		try {
--			this.replyBytes = Integer
--					.parseInt(line.substring(lastIndexOfSpace + 1));
--		} catch (NumberFormatException e) {
--			this.replyBytes = 0;
--		}
+			this.replyBytes = Integer.parseInt(line
+					.substring(lastIndexOfSpace + 1));
+		} catch (NumberFormatException e) {
+			this.replyBytes = 0;
+		}
 
 		String timestampPattern = "[dd/MMM/yyyy:HH:mm:ss Z]";
 		this.timestamp = new SimpleDateFormat(timestampPattern, Locale.US)
