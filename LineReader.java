@@ -8,27 +8,26 @@ import java.io.PrintWriter;
 
 public class LineReader {
 
-	public static void main(String[] args) throws IOException,
-			FileNotFoundException {
+    public static void main(String[] args) throws IOException,
+            FileNotFoundException {
 
-		int startLine = Integer.valueOf(args[0]);
-		int amountOfLines = Integer.valueOf(args[1]);
-		LineNumberReader reader = new LineNumberReader(new FileReader(args[2]));
+        int startLine = Integer.valueOf(args[0]);
+        int amountOfLines = Integer.valueOf(args[1]);
+        LineNumberReader reader = new LineNumberReader(new FileReader(args[2]));
 
-		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
-				args[3])));
-		String line;
-		while ((line = reader.readLine()) != null && amountOfLines != 0) {
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
+                args[3])));
+        String line;
+        while ((line = reader.readLine()) != null && amountOfLines != 0) {
 
-			if (reader.getLineNumber() >= startLine) {
-				Log log = new Log();
-				log.parseString(line);
-				out.println(log);
-				--amountOfLines;
-			}
-		}
-		
-		out.close();
-		reader.close();
-	}
+            if (reader.getLineNumber() >= startLine) {
+                Log log = LogParser.parseString(line);
+                out.println(log);
+                --amountOfLines;
+            }
+        }
+
+        out.close();
+        reader.close();
+    }
 }
