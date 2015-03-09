@@ -7,69 +7,67 @@ import java.util.StringTokenizer;
 
 public class LogParser {
 
-	public static Log parseString(String line) {
-		char quotationMark = '\"';
-		int indexOfQuotationMark = line.indexOf(quotationMark);
-		int lastIndexOfQuotationMark = line.lastIndexOf(quotationMark);
-		int lastIndexOfSpace = line.lastIndexOf(" ");
+    private static final String TIMESTAMP_PATTERN = "dd/MMM/yyyy:HH:mm:ss Z";
 
-		Log log = new Log();
+    public static Log parseString(String line) {
+        char quotationMark = '\"';
+        int indexOfQuotationMark = line.indexOf(quotationMark);
+        int lastIndexOfQuotationMark = line.lastIndexOf(quotationMark);
+        int lastIndexOfSpace = line.lastIndexOf(" ");
 
-		log.setHost(LogParser.parseIpAddress(line.substring(0,
-				line.indexOf(" - - "))));
-		if (log.getHost() == null) {
-			log.setHost(line.substring(0, line.indexOf(" - - ")));
-		}
+        Log log = new Log();
 
-		log.setRequest(line.substring(indexOfQuotationMark,
-				lastIndexOfQuotationMark) + quotationMark);
-		log.setReplyCode(Integer.parseInt(line.substring(
-				lastIndexOfQuotationMark + 2, lastIndexOfSpace)));
+        log.setHost(LogParser.parseIpAddress(line.substring(0,
+                line.indexOf(" - - "))));
+        if (log.getHost() == null) {
+            log.setHost(line.substring(0, line.indexOf(" - - ")));
+        }
 
-		try {
-			log.setReplyBytes(Integer.parseInt(line
-					.substring(lastIndexOfSpace + 1)));
-		} catch (NumberFormatException e) {
-			log.setReplyBytes(0);
-		}
+        log.setRequest(line.substring(indexOfQuotationMark,
+                lastIndexOfQuotationMark) + quotationMark);
 
-		String timestampPattern = "[dd/MMM/yyyy:HH:mm:ss Z]";
-		log.setTimestamp(new SimpleDateFormat(timestampPattern, Locale.US)
-				.parse(line, new ParsePosition(line.indexOf("["))));
+        log.setReplyCode(Integer.parseInt(line.substring(
+                lastIndexOfQuotationMark + 2, lastIndexOfSpace)));
 
-		return log;
-	}
+        try {
+            log.setReplyBytes(Integer.parseInt(line
+                    .substring(lastIndexOfSpace + 1)));
+        } catch (NumberFormatException e) {
+            log.setReplyBytes(0);
+        }
 
-	private static InetAddress parseIpAddress(String host) {
-		StringTokenizer tokenizer = new StringTokenizer(host, ".");
-		byte[] hostAddress = new byte[tokenizer.countTokens()];
+        log.setTimestamp(new SimpleDateFormat(TIMESTAMP_PATTERN, Locale.US)
+                .parse(line, new ParsePosition(line.indexOf("["))));
 
-		if (tokenizer.countTokens() != 4) {
-			return null;
-		}
+        return log;
+    }
 
-		int i = 0;
-		while (tokenizer.hasMoreTokens()) {
-			String token = tokenizer.nextToken();
-			try {
-				int tokenValue = Integer.parseInt(token, 10);
+    private static InetAddress parseIpAddress(String host) {
+        StringTokenizer tokenizer = new StringTokenizer(host, ".");
+        byte[] hostAddress = new byte[tokenizer.countTokens()];
 
-				if (tokenValue < 0 || tokenValue > 255) {
-					return null;
-				}
+        if (tokenizer.countTokens() != 4) {
+            return null;
+        }
 
-				hostAddress[i++] = (byte) tokenValue;
-			} catch (NumberFormatException e) {
-				return null;
-			}
-		}
+        for (int i = 0; i < tokenizer.countTokens(); i++) {
+            try {
+                int tokenValue = Integer.parseInt(tokenizer.nextToken(), 10);
 
-		try {
-			return InetAddress.getByAddress(hostAddress);
-		} catch (UnknownHostException e) {
-			return null;
-		}
+                if (tokenValue < 0 || tokenValue > 255) {
+                    return null;
+                }
 
-	}
+                hostAddress[i] = (byte) tokenValue;
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        }
 
+        try {
+            return InetAddress.getByAddress(hostAddress);
+        } catch (UnknownHostException e) {
+            return null;
+        }
+    }
 }
