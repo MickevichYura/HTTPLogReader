@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 public class LogParser {
 
-    private static final String TIMESTAMP_PATTERN = "dd/MMM/yyyy:HH:mm:ss Z";
+    private static final String TIMESTAMP_PATTERN = "[dd/MMM/yyyy:HH:mm:ss Z]";
 
     public static Log parseString(String line) {
         char quotationMark = '\"';
@@ -37,7 +37,9 @@ public class LogParser {
         }
 
         log.setTimestamp(new SimpleDateFormat(TIMESTAMP_PATTERN, Locale.US)
-                .parse(line, new ParsePosition(line.indexOf("["))));
+                .parse(line,
+                        new ParsePosition(line.indexOf(TIMESTAMP_PATTERN
+                                .charAt(0)))));
 
         return log;
     }

@@ -58,4 +58,5 @@ public class Log {
 				+ request + ", replyCode=" + replyCode + ", replyBytes="
 				+ replyBytes;
 	}
+
 }
