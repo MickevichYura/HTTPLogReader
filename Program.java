@@ -9,8 +9,8 @@ public class Program {
         int numberOfStartLine = Integer.valueOf(args[0]);
         int amountOfLines = Integer.valueOf(args[1]);
 
-        LogWriter.write(args[3],
-                LogReader.getLogsFromFile(args[2], numberOfStartLine, amountOfLines));
+        LogWriter.write(args[3], LogParser.parseString(LogReader.getLines(
+                args[2], numberOfStartLine, amountOfLines)));
 
     }
 }

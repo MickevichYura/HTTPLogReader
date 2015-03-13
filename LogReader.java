@@ -6,22 +6,22 @@ import java.util.List;
 
 public class LogReader {
 
-	public static List<Log> getLogsFromFile(String path, int numberOfStartLine,
+	public static List<String> getLines(String path, int numberOfStartLine,
 			int amountOfLines) throws IOException {
 
 		LineNumberReader reader = new LineNumberReader(new FileReader(path));
 
 		String line;
-		List<Log> logs = new ArrayList<Log>();
+		List<String> lines = new ArrayList<String>();
 		while ((amountOfLines != 0) && ((line = reader.readLine()) != null)) {
 
 			if (reader.getLineNumber() >= numberOfStartLine) {
-				logs.add(LogParser.parseString(line));
+				lines.add(line);
 				--amountOfLines;
 			}
 		}
 		reader.close();
-		return logs;
+		return lines;
 	}
 
 }

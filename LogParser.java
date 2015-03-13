@@ -2,6 +2,8 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
@@ -42,6 +44,16 @@ public class LogParser {
                                 .charAt(0)))));
 
         return log;
+    }
+
+    public static List<Log> parseString(List<String> lines) {
+        List<Log> logs = new ArrayList<Log>();
+
+        for (String line : lines) {
+            logs.add(parseString(line));
+        }
+
+        return logs;
     }
 
     private static InetAddress parseIpAddress(String host) {
