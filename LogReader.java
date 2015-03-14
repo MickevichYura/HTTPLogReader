@@ -4,9 +4,9 @@ import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogReader {
+public class LogReader implements ILogFileParser{
 
-	public static List<String> getLines(String path, int numberOfStartLine,
+	public List<String> getLines(String path, int numberOfStartLine,
 			int amountOfLines) throws IOException {
 
 		LineNumberReader reader = new LineNumberReader(new FileReader(path));
