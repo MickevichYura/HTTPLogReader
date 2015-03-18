@@ -2,17 +2,19 @@ import java.util.Date;
 
 public class Log {
 
-	private Object host;
+	private Host host;
+	private Date timestamp;
+	private String request;
+	private int replyCode;
+	private int replyBytes;
 
-	public Object getHost() {
+	public Host getHost() {
 		return host;
 	}
 
-	public void setHost(Object host) {
+	public void setHost(Host host) {
 		this.host = host;
 	}
-
-	private Date timestamp;
 
 	public Date getTimestamp() {
 		return timestamp;
@@ -22,8 +24,6 @@ public class Log {
 		this.timestamp = timestamp;
 	}
 
-	private String request;
-
 	public String getRequest() {
 		return request;
 	}
@@ -32,8 +32,6 @@ public class Log {
 		this.request = request;
 	}
 
-	private int replyCode;
-
 	public int getReplyCode() {
 		return replyCode;
 	}
@@ -41,8 +39,6 @@ public class Log {
 	public void setReplyCode(int replyCode) {
 		this.replyCode = replyCode;
 	}
-
-	private int replyBytes;
 
 	public int getReplyBytes() {
 		return replyBytes;

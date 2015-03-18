@@ -1,13 +1,10 @@
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.StringTokenizer;
 
-public class LogParser implements ILogParser{
+public class LogParser implements ILogParser {
 
 	public Log parseString(String line) {
 		char quotationMark = '\"';
@@ -17,11 +14,7 @@ public class LogParser implements ILogParser{
 
 		Log log = new Log();
 
-		log.setHost(LogParser.parseIpAddress(line.substring(0,
-				line.indexOf(" - - "))));
-		if (log.getHost() == null) {
-			log.setHost(line.substring(0, line.indexOf(" - - ")));
-		}
+		log.setHost(new Host(line.substring(0, line.indexOf(" - - "))));
 
 		log.setRequest(line.substring(indexOfQuotationMark,
 				lastIndexOfQuotationMark) + quotationMark);
@@ -54,32 +47,4 @@ public class LogParser implements ILogParser{
 		return logs;
 	}
 
-	private static InetAddress parseIpAddress(String host) {
-		StringTokenizer tokenizer = new StringTokenizer(host, ".");
-		byte[] hostAddress = new byte[tokenizer.countTokens()];
-
-		if (tokenizer.countTokens() != 4) {
-			return null;
-		}
-
-		for (int i = 0; i < tokenizer.countTokens(); i++) {
-			try {
-				int tokenValue = Integer.parseInt(tokenizer.nextToken(), 10);
-
-				if (tokenValue < 0 || tokenValue > 255) {
-					return null;
-				}
-
-				hostAddress[i] = (byte) tokenValue;
-			} catch (NumberFormatException e) {
-				return null;
-			}
-		}
-
-		try {
-			return InetAddress.getByAddress(hostAddress);
-		} catch (UnknownHostException e) {
-			return null;
-		}
-	}
 }

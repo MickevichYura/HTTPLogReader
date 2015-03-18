@@ -1,3 +1,3 @@
-public class LogProcess implements ILogProcess{
+public class LogProcess implements ILogProcessor{
 
 }
