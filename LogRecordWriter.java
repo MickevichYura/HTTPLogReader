@@ -4,16 +4,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-public class LogWriter implements ILogWriter {
+public class LogRecordWriter implements IWriter {
 
 	@Override
-	public void write(String path, List<Log> logs) throws IOException {
+	public void write(String path, List<LogRecord> logRecords)
+			throws IOException {
 
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
 				path)));
 
-		for (Log log : logs) {
-			out.println(log);
+		for (LogRecord logRecord : logRecords) {
+			out.println(logRecord);
 		}
 
 		out.close();

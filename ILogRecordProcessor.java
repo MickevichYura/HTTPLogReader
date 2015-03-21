@@ -1,5 +1,5 @@
 import java.io.IOException;
 
-public interface ILogProcessor {
+public interface ILogRecordProcessor {
 	void process(InputData data) throws IOException;
 }

@@ -4,7 +4,7 @@ import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogReader implements ILogFileParser {
+public class LogFileReader implements IReader {
 
 	public List<String> getLines(String path, int startLineNumber,
 			int amountOfLines) throws IOException {

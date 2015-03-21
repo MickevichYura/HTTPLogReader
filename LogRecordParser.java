@@ -4,47 +4,47 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class LogParser implements ILogParser {
+public class LogRecordParser implements ILogRecordParser {
 
-	public Log parseString(String line) {
+	public LogRecord parse(String line) {
 		char quotationMark = '\"';
 		int indexOfQuotationMark = line.indexOf(quotationMark);
 		int lastIndexOfQuotationMark = line.lastIndexOf(quotationMark);
 		int lastIndexOfSpace = line.lastIndexOf(" ");
 
-		Log log = new Log();
+		LogRecord logRecord = new LogRecord();
 
-		log.setHost(new Host(line.substring(0, line.indexOf(" - - "))));
+		logRecord.setHost(new Host(line.substring(0, line.indexOf(" - - "))));
 
-		log.setRequest(line.substring(indexOfQuotationMark,
+		logRecord.setRequest(line.substring(indexOfQuotationMark,
 				lastIndexOfQuotationMark) + quotationMark);
 
-		log.setReplyCode(Integer.parseInt(line.substring(
+		logRecord.setReplyCode(Integer.parseInt(line.substring(
 				lastIndexOfQuotationMark + 2, lastIndexOfSpace)));
 
 		try {
-			log.setReplyBytes(Integer.parseInt(line
+			logRecord.setReplyBytes(Integer.parseInt(line
 					.substring(lastIndexOfSpace + 1)));
 		} catch (NumberFormatException e) {
-			log.setReplyBytes(0);
+			logRecord.setReplyBytes(0);
 		}
 
-		log.setTimestamp(new SimpleDateFormat(TIMESTAMP_PATTERN, Locale.US)
+		logRecord.setTimestamp(new SimpleDateFormat(TIMESTAMP_PATTERN, Locale.US)
 				.parse(line,
 						new ParsePosition(line.indexOf(TIMESTAMP_PATTERN
 								.charAt(0)))));
 
-		return log;
+		return logRecord;
 	}
 
-	public List<Log> parseString(List<String> lines) {
-		List<Log> logs = new ArrayList<Log>();
+	public List<LogRecord> parse(List<String> lines) {
+		List<LogRecord> logRecords = new ArrayList<LogRecord>();
 
 		for (String line : lines) {
-			logs.add(parseString(line));
+			logRecords.add(parse(line));
 		}
 
-		return logs;
+		return logRecords;
 	}
 
 }

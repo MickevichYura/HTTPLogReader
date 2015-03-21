@@ -1,6 +1,6 @@
 import java.util.Date;
 
-public class Log {
+public class LogRecord {
 
 	private Host host;
 	private Date timestamp;

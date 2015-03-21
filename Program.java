@@ -1,15 +1,16 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Program {
 
-	public static void main(String[] args) throws IOException,
-			FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 
 		InputData data = new InputData(args);
 		if (data.isCorrect()) {
-			ILogProcessor logProcessor = new LogProcessor();
-			logProcessor.process(data);
+			ILogRecordParser logRecordParser = new LogRecordParser();
+			IWriter writer = new LogRecordWriter();
+			ILogRecordProcessor logRecordProcessor = new LogRecordProcessor(
+					logRecordParser, writer);
+			logRecordProcessor.process(data);
 		} else {
 			System.out.print(data.getErrorMessage());
 		}
