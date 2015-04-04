@@ -1,8 +1,6 @@
 import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class LogRecordParser implements ILogRecordParser {
 
@@ -29,10 +27,8 @@ public class LogRecordParser implements ILogRecordParser {
 			logRecord.setReplyBytes(0);
 		}
 
-		logRecord.setTimestamp(new SimpleDateFormat(TIMESTAMP_PATTERN, Locale.US)
-				.parse(line,
-						new ParsePosition(line.indexOf(TIMESTAMP_PATTERN
-								.charAt(0)))));
+		logRecord.setTimestamp(DATE_FORMAT.parse(line,
+				new ParsePosition(line.indexOf(TIMESTAMP_PATTERN.charAt(0)))));
 
 		return logRecord;
 	}

@@ -1,7 +1,6 @@
 import java.util.List;
 
-public interface ILogRecordParser {
-	String TIMESTAMP_PATTERN = "[dd/MMM/yyyy:HH:mm:ss Z]";
+public interface ILogRecordParser extends DateFormat{
 
 	LogRecord parse(String line);
 
