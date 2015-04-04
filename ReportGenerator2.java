@@ -3,7 +3,11 @@ public class ReportGenerator2 implements
 
 	@Override
 	public Report2 generateReport(ReportParameters p) {
-		return new Report2();
-	}
 
+		int totalRequestSize = 0;
+		for (LogRecord log : p.getLogs()) {
+			totalRequestSize += log.getReplyBytes();
+		}
+		return new Report2(totalRequestSize);
+	}
 }

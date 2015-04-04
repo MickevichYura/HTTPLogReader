@@ -1,8 +1,15 @@
-import java.util.Date;
+import java.util.List;
 
 public class ReportParameters {
 
-	Date startDate;
-	Date endDate;
-	int reportNumber;
+	private List<LogRecord> logs;
+
+	public ReportParameters(List<LogRecord> logs) {
+		super();
+		this.logs = logs;
+	}
+
+	public List<LogRecord> getLogs() {
+		return logs;
+	}
 }

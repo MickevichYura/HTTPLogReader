@@ -22,5 +22,32 @@ public class LogRecordProcessor implements ILogRecordProcessor {
 
 		writer.write(data.getOutputFilePath(), logRecords);
 
+		IDateIntervalSearcher s = new DateIntervalSearcher(logRecords);
+
+		logRecords = s.findByDate(data.getStartDate(), data.getEndDate());
+		ReportParameters params = new ReportParameters(logRecords);
+
+		switch (data.getReportNumber()) {
+		case 1: {
+			IReportGenerator<ReportParameters, Report1> r1 = new ReportGenerator1();
+			System.out.println(r1.generateReport(params));
+			break;
+		}
+
+		case 2: {
+			IReportGenerator<ReportParameters, Report2> r2 = new ReportGenerator2();
+			System.out.println(r2.generateReport(params));
+			break;
+		}
+
+		case 3: {
+			IReportGenerator<ReportParameters, Report3> r3 = new ReportGenerator3();
+			System.out.println(r3.generateReport(params));
+			break;
+		}
+
+		default:
+			break;
+		}
 	}
 }
