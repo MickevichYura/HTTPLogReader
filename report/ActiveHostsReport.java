@@ -2,12 +2,12 @@ package report;
 
 import java.util.List;
 
-public class Report1 {
+public class ActiveHostsReport {
 
 	public static final int numberOfHosts = 5;
 	private List<Object> hosts;
 
-	public Report1(List<Object> hosts) {
+	public ActiveHostsReport(List<Object> hosts) {
 		super();
 		this.hosts = hosts;
 	}

@@ -5,11 +5,11 @@ import java.util.Comparator;
 
 import main.LogRecord;
 
-public class ReportGenerator3 implements
-		IReportGenerator<ReportParameters, Report3> {
+public class MaxReplyBytesReportGenerator implements
+		IReportGenerator<ReportParameters, MaxReplyBytesReport> {
 
 	@Override
-	public Report3 generateReport(ReportParameters p) {
+	public MaxReplyBytesReport generateReport(ReportParameters p) {
 		LogRecord max = Collections.max(p.getLogs(),
 				new Comparator<LogRecord>() {
 					@Override
@@ -18,6 +18,6 @@ public class ReportGenerator3 implements
 								log2.getReplyBytes());
 					}
 				});
-		return new Report3(max);
+		return new MaxReplyBytesReport(max);
 	}
 }

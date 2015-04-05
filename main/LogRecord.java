@@ -8,7 +8,7 @@ public class LogRecord {
 	private Date timestamp;
 	private String request;
 	private int replyCode;
-	private int replyBytes;
+	private int replySize;
 
 	public Host getHost() {
 		return host;
@@ -43,18 +43,18 @@ public class LogRecord {
 	}
 
 	public int getReplyBytes() {
-		return replyBytes;
+		return replySize;
 	}
 
 	public void setReplyBytes(int replyBytes) {
-		this.replyBytes = replyBytes;
+		this.replySize = replyBytes;
 	}
 
 	@Override
 	public String toString() {
 		return "host=" + host + ", timestamp=" + timestamp + ", request="
 				+ request + ", replyCode=" + replyCode + ", replyBytes="
-				+ replyBytes;
+				+ replySize;
 	}
 
 }

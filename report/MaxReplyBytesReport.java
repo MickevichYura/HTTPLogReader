@@ -2,11 +2,11 @@ package report;
 
 import main.LogRecord;
 
-public class Report3 {
+public class MaxReplyBytesReport {
 
 	private LogRecord maxReplyBytes;
 
-	public Report3(LogRecord maxReplyBytes) {
+	public MaxReplyBytesReport(LogRecord maxReplyBytes) {
 		super();
 		this.maxReplyBytes = maxReplyBytes;
 	}

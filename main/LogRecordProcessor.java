@@ -6,12 +6,12 @@ import java.io.IOException;
 import report.DateIntervalSearcher;
 import report.IDateIntervalSearcher;
 import report.IReportGenerator;
-import report.Report1;
-import report.Report2;
-import report.Report3;
-import report.ReportGenerator1;
-import report.ReportGenerator2;
-import report.ReportGenerator3;
+import report.ActiveHostsReport;
+import report.TotalReplySizeReport;
+import report.MaxReplyBytesReport;
+import report.ActiveHostsReportGenerator;
+import report.TotalReplySizeReportGenerator;
+import report.MaxReplyBytesReportGenerator;
 import report.ReportParameters;
 
 public class LogRecordProcessor implements ILogRecordProcessor {
@@ -42,19 +42,19 @@ public class LogRecordProcessor implements ILogRecordProcessor {
 
 		switch (data.getReportNumber()) {
 		case 1: {
-			IReportGenerator<ReportParameters, Report1> r1 = new ReportGenerator1();
+			IReportGenerator<ReportParameters, ActiveHostsReport> r1 = new ActiveHostsReportGenerator();
 			System.out.println(r1.generateReport(params));
 			break;
 		}
 
 		case 2: {
-			IReportGenerator<ReportParameters, Report2> r2 = new ReportGenerator2();
+			IReportGenerator<ReportParameters, TotalReplySizeReport> r2 = new TotalReplySizeReportGenerator();
 			System.out.println(r2.generateReport(params));
 			break;
 		}
 
 		case 3: {
-			IReportGenerator<ReportParameters, Report3> r3 = new ReportGenerator3();
+			IReportGenerator<ReportParameters, MaxReplyBytesReport> r3 = new MaxReplyBytesReportGenerator();
 			System.out.println(r3.generateReport(params));
 			break;
 		}

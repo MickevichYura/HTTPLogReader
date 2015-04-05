@@ -9,11 +9,11 @@ import java.util.Map;
 
 import main.LogRecord;
 
-public class ReportGenerator1 implements
-		IReportGenerator<ReportParameters, Report1> {
+public class ActiveHostsReportGenerator implements
+		IReportGenerator<ReportParameters, ActiveHostsReport> {
 
 	@Override
-	public Report1 generateReport(ReportParameters p) {
+	public ActiveHostsReport generateReport(ReportParameters p) {
 		Map<String, Integer> dict = new HashMap<String, Integer>();
 		for (LogRecord log : p.getLogs()) {
 			if (dict.containsKey(log.getHost().toString()))
@@ -31,9 +31,9 @@ public class ReportGenerator1 implements
 				return a.getValue().compareTo(b.getValue());
 			}
 		});
-		if (Report1.numberOfHosts > list.size())
-			return new Report1(list);
-		return new Report1(list.subList(0, Report1.numberOfHosts));
+		if (ActiveHostsReport.numberOfHosts > list.size())
+			return new ActiveHostsReport(list);
+		return new ActiveHostsReport(list.subList(0, ActiveHostsReport.numberOfHosts));
 
 	}
 
