@@ -1,6 +1,8 @@
+package main;
+
 import java.util.List;
 
-public interface ILogRecordParser extends DateFormat{
+public interface ILogRecordParser extends DateFormat {
 
 	LogRecord parse(String line);
 

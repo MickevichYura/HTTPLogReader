@@ -1,3 +1,5 @@
+package report;
+
 public class Report2 {
 
 	private int totalRequestSize;

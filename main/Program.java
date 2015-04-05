@@ -1,6 +1,8 @@
+package main;
+
 import java.io.IOException;
 
-public class Program {
+class Program {
 
 	public static void main(String[] args) throws IOException {
 

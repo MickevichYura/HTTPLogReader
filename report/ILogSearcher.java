@@ -1,5 +1,7 @@
+package report;
+
 import java.util.Date;
 
-public interface ILogSearcher {
+ interface ILogSearcher {
 	int binarySearch(Date key, float left, float right);
 }

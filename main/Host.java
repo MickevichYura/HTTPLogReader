@@ -1,3 +1,5 @@
+package main;
+
 public class Host {
 
 	private String hostname;

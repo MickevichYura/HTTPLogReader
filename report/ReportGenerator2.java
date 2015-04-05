@@ -1,3 +1,7 @@
+package report;
+
+import main.LogRecord;
+
 public class ReportGenerator2 implements
 		IReportGenerator<ReportParameters, Report2> {
 

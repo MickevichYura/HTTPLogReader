@@ -1,3 +1,5 @@
+package main;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.ParsePosition;
@@ -112,7 +114,7 @@ public class InputData implements DateFormat {
 			this.reportNumber = 0;
 		}
 	}
-	
+
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -124,11 +126,13 @@ public class InputData implements DateFormat {
 	private void setDateInterval(String startDate, String endDate) {
 		this.startDate = DATE_FORMAT.parse(startDate, new ParsePosition(
 				startDate.indexOf(TIMESTAMP_PATTERN.charAt(0))));
-		this.endDate = DATE_FORMAT.parse(endDate, new ParsePosition(
-				endDate.indexOf(TIMESTAMP_PATTERN.charAt(0))));
-		
+		this.endDate = DATE_FORMAT
+				.parse(endDate,
+						new ParsePosition(endDate.indexOf(TIMESTAMP_PATTERN
+								.charAt(0))));
+
 		try {
-			if(this.startDate.after(this.endDate)){
+			if (this.startDate.after(this.endDate)) {
 				errorMessage += "Start date cannot be after end date\n";
 			}
 		} catch (NullPointerException e) {

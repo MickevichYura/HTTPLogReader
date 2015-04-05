@@ -1,9 +1,13 @@
+package report;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import main.LogRecord;
 
 public class ReportGenerator1 implements
 		IReportGenerator<ReportParameters, Report1> {

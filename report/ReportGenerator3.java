@@ -1,5 +1,9 @@
+package report;
+
 import java.util.Collections;
 import java.util.Comparator;
+
+import main.LogRecord;
 
 public class ReportGenerator3 implements
 		IReportGenerator<ReportParameters, Report3> {

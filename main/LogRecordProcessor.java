@@ -1,5 +1,18 @@
+package main;
+
 import java.util.List;
 import java.io.IOException;
+
+import report.DateIntervalSearcher;
+import report.IDateIntervalSearcher;
+import report.IReportGenerator;
+import report.Report1;
+import report.Report2;
+import report.Report3;
+import report.ReportGenerator1;
+import report.ReportGenerator2;
+import report.ReportGenerator3;
+import report.ReportParameters;
 
 public class LogRecordProcessor implements ILogRecordProcessor {
 

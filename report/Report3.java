@@ -1,3 +1,7 @@
+package report;
+
+import main.LogRecord;
+
 public class Report3 {
 
 	private LogRecord maxReplyBytes;
