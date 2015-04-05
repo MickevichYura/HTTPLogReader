@@ -25,5 +25,4 @@ public class LogFileReader implements IReader {
 		reader.close();
 		return lines;
 	}
-
 }

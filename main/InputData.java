@@ -1,13 +1,12 @@
 package main;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.ParsePosition;
 import java.util.Date;
 
 public class InputData implements DateFormat {
 
-	private String errorMessage = "";
+	private StringBuilder errorMessage = new StringBuilder();
 	private int startLineNumber;
 	private int amountOfLines;
 	private String inputFilePath;
@@ -18,7 +17,7 @@ public class InputData implements DateFormat {
 
 	public InputData(String[] args) {
 		if (args.length < 7) {
-			errorMessage += "You must input the 7 parameters\n";
+			errorMessage.append("You must input the 7 parameters\n");
 		}
 		setStartLineNumber(args[0]);
 		setAmountOfLines(args[1]);
@@ -29,7 +28,7 @@ public class InputData implements DateFormat {
 	}
 
 	public String getErrorMessage() {
-		return errorMessage;
+		return errorMessage.toString();
 	}
 
 	public int getStartLineNumber() {
@@ -40,11 +39,11 @@ public class InputData implements DateFormat {
 		try {
 			this.startLineNumber = Integer.parseInt(startLineNumber);
 			if (this.startLineNumber < 0) {
-				errorMessage = "Number should be greater than 0\n";
+				errorMessage.append("Number should be greater than 0\n");
 				this.startLineNumber = 0;
 			}
 		} catch (NumberFormatException e) {
-			errorMessage += e.toString() + "\n";
+			errorMessage.append(e.toString() + "\n");
 			this.startLineNumber = 0;
 		}
 	}
@@ -57,11 +56,11 @@ public class InputData implements DateFormat {
 		try {
 			this.amountOfLines = Integer.parseInt(amountOfLines);
 			if (this.amountOfLines < 0) {
-				errorMessage = "Number should be greater than 0\n";
+				errorMessage.append("Number should be greater than 0\n");
 				this.amountOfLines = 0;
 			}
 		} catch (NumberFormatException e) {
-			errorMessage += e.toString() + "\n";
+			errorMessage.append(e.toString() + "\n");
 			this.amountOfLines = 0;
 		}
 	}
@@ -74,13 +73,8 @@ public class InputData implements DateFormat {
 		this.inputFilePath = inputFilePath;
 		File file = new File(inputFilePath);
 		if (!file.canRead()) {
-			errorMessage += "Can't read file: " + file.getAbsolutePath() + "\n";
-
-			try {
-				file.createNewFile();
-			} catch (IOException e) {
-			}
-
+			errorMessage.append("Can't read file: " + file.getAbsolutePath()
+					+ "\n");
 		}
 	}
 
@@ -92,9 +86,8 @@ public class InputData implements DateFormat {
 		this.outputFilePath = inputFilePath;
 		File file = new File(inputFilePath);
 		if (!file.canWrite()) {
-			errorMessage += "Can't write file: " + file.getAbsolutePath()
-					+ "\n";
-			file.setWritable(true);
+			errorMessage.append("Can't write file: " + file.getAbsolutePath()
+					+ "\n");
 		}
 	}
 
@@ -106,12 +99,10 @@ public class InputData implements DateFormat {
 		try {
 			this.reportNumber = Integer.parseInt(reportNumber);
 			if (this.reportNumber < 0 || this.reportNumber > 3) {
-				errorMessage = "Not correct report number\n";
-				this.reportNumber = 0;
+				errorMessage.append("Not correct report number\n");
 			}
 		} catch (NumberFormatException e) {
-			errorMessage += e.toString() + "\n";
-			this.reportNumber = 0;
+			errorMessage.append(e.toString() + "\n");
 		}
 	}
 
@@ -125,24 +116,22 @@ public class InputData implements DateFormat {
 
 	private void setDateInterval(String startDate, String endDate) {
 		this.startDate = DATE_FORMAT.parse(startDate, new ParsePosition(
-				startDate.indexOf(TIMESTAMP_PATTERN.charAt(0))));
-		this.endDate = DATE_FORMAT
-				.parse(endDate,
-						new ParsePosition(endDate.indexOf(TIMESTAMP_PATTERN
-								.charAt(0))));
+				startDate.indexOf(DATE_FORMAT_PATTERN.charAt(0))));
+		this.endDate = DATE_FORMAT.parse(
+				endDate,
+				new ParsePosition(
+						endDate.indexOf(DATE_FORMAT_PATTERN.charAt(0))));
 
 		try {
 			if (this.startDate.after(this.endDate)) {
-				errorMessage += "Start date cannot be after end date\n";
+				errorMessage.append("Start date cannot be after end date\n");
 			}
 		} catch (NullPointerException e) {
-			errorMessage += "Wrong date format\n";
+			errorMessage.append("Wrong date format\n");
 		}
 	}
 
 	public boolean isCorrect() {
-
-		return errorMessage.isEmpty();
+		return errorMessage.toString().isEmpty();
 	}
-
 }

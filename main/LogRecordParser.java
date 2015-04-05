@@ -30,7 +30,7 @@ public class LogRecordParser implements ILogRecordParser {
 		}
 
 		logRecord.setTimestamp(DATE_FORMAT.parse(line,
-				new ParsePosition(line.indexOf(TIMESTAMP_PATTERN.charAt(0)))));
+				new ParsePosition(line.indexOf(DATE_FORMAT_PATTERN.charAt(0)))));
 
 		return logRecord;
 	}
@@ -44,5 +44,4 @@ public class LogRecordParser implements ILogRecordParser {
 
 		return logRecords;
 	}
-
 }
