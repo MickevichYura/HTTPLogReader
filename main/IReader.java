@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface IReader {
 
-	List<String> getLines(String path, int numberOfStartLine, int amountOfLines)
+	List<String> getLines(String path, int startLineNumber, int amountOfLines)
 			throws IOException;
 }

@@ -18,16 +18,16 @@ public class LogRecordProcessor implements ILogRecordProcessor {
 
 	private ILogRecordParser logRecordParser;
 	private IWriter writer;
+	private IReader reader;
 
-	public LogRecordProcessor(ILogRecordParser logRecordParser, IWriter writer) {
+	public LogRecordProcessor(ILogRecordParser logRecordParser, IWriter writer, IReader reader) {
 		this.logRecordParser = logRecordParser;
 		this.writer = writer;
+		this.reader = reader;
 	}
 
 	@Override
 	public void process(InputData data) throws IOException {
-
-		IReader reader = new LogFileReader();
 
 		List<LogRecord> logRecords = logRecordParser.parse(reader.getLines(
 				data.getInputFilePath(), data.getStartLineNumber(),

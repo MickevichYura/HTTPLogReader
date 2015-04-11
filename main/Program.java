@@ -10,8 +10,10 @@ class Program {
 		if (data.isCorrect()) {
 			ILogRecordParser logRecordParser = new LogRecordParser();
 			IWriter writer = new LogRecordWriter();
+			IReader reader = new BinaryFileReader();
+			
 			ILogRecordProcessor logRecordProcessor = new LogRecordProcessor(
-					logRecordParser, writer);
+					logRecordParser, writer, reader);
 			logRecordProcessor.process(data);
 		} else {
 			System.out.print(data.getErrorMessage());
