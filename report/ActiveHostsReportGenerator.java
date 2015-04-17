@@ -16,25 +16,28 @@ public class ActiveHostsReportGenerator implements
 	public ActiveHostsReport generateReport(ReportParameters p) {
 		Map<String, Integer> dict = new HashMap<String, Integer>();
 		for (LogRecord log : p.getLogs()) {
-			if (dict.containsKey(log.getHost().toString()))
+			if (dict.containsKey(log.getHost().toString())) {
 				dict.put(log.getHost().toString(),
 						dict.get(log.getHost().toString()) + 1);
-			else
+			} else {
 				dict.put(log.getHost().toString(), 1);
+			}
 		}
 
-		List list = new ArrayList(dict.entrySet());
+		List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(
+				dict.entrySet());
 		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
 			@Override
-			public int compare(Map.Entry<String, Integer> b,
-					Map.Entry<String, Integer> a) {
+			public int compare(Map.Entry<String, Integer> a,
+					Map.Entry<String, Integer> b) {
 				return a.getValue().compareTo(b.getValue());
 			}
 		});
+
 		if (ActiveHostsReport.numberOfHosts > list.size())
 			return new ActiveHostsReport(list);
-		return new ActiveHostsReport(list.subList(0, ActiveHostsReport.numberOfHosts));
+		return new ActiveHostsReport(list.subList(0,
+				ActiveHostsReport.numberOfHosts));
 
 	}
-
 }

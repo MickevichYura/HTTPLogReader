@@ -1,22 +1,23 @@
 package report;
 
 import java.util.List;
+import java.util.Map;
 
 public class ActiveHostsReport {
 
 	public static final int numberOfHosts = 5;
-	private List<Object> hosts;
+	private List<Map.Entry<String, Integer>> hosts;
 
-	public ActiveHostsReport(List<Object> hosts) {
+	public ActiveHostsReport(List<Map.Entry<String, Integer>> hosts) {
 		super();
 		this.hosts = hosts;
 	}
 
-	public List<Object> getHosts() {
+	public List<Map.Entry<String, Integer>> getHosts() {
 		return hosts;
 	}
 
-	public void setHosts(List<Object> hosts) {
+	public void setHosts(List<Map.Entry<String, Integer>> hosts) {
 		this.hosts = hosts;
 	}
 
