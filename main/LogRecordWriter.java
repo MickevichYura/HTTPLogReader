@@ -15,9 +15,7 @@ public class LogRecordWriter implements IWriter {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
 				path)));
 
-		for (LogRecord logRecord : logRecords) {
-			out.println(logRecord);
-		}
+		logRecords.forEach(out::println);
 
 		out.close();
 	}

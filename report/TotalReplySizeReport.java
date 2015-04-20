@@ -9,14 +9,6 @@ public class TotalReplySizeReport {
 		this.totalReplySize = totalRequestSize;
 	}
 
-	public int getTotalRequestSize() {
-		return totalReplySize;
-	}
-
-	public void setTotalRequestSize(int totalReplySize) {
-		this.totalReplySize = totalReplySize;
-	}
-
 	@Override
 	public String toString() {
 		return "totalReplySize = " + totalReplySize;

@@ -9,16 +9,8 @@ public class Host {
 		return hostname;
 	}
 
-	public void setHostname(String hostname) {
-		this.hostname = hostname;
-	}
-
 	public int[] getIp() {
 		return ip;
-	}
-
-	public void setIp(int[] ip) {
-		this.ip = ip;
 	}
 
 	public Host(String host) {

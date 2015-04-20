@@ -43,7 +43,7 @@ public class InputData implements DateFormat {
 				this.startLineNumber = 0;
 			}
 		} catch (NumberFormatException e) {
-			errorMessage.append(e.toString() + "\n");
+			errorMessage.append(e.toString()).append("\n");
 			this.startLineNumber = 0;
 		}
 	}
@@ -60,7 +60,7 @@ public class InputData implements DateFormat {
 				this.amountOfLines = 0;
 			}
 		} catch (NumberFormatException e) {
-			errorMessage.append(e.toString() + "\n");
+			errorMessage.append(String.format("%s\n", e.toString()));
 			this.amountOfLines = 0;
 		}
 	}
@@ -73,8 +73,7 @@ public class InputData implements DateFormat {
 		this.inputFilePath = inputFilePath;
 		File file = new File(inputFilePath);
 		if (!file.canRead()) {
-			errorMessage.append("Can't read file: " + file.getAbsolutePath()
-					+ "\n");
+			errorMessage.append(String.format("Can't read file: %s\n", file.getAbsolutePath()));
 		}
 	}
 
@@ -86,8 +85,7 @@ public class InputData implements DateFormat {
 		this.outputFilePath = inputFilePath;
 		File file = new File(inputFilePath);
 		if (!file.canWrite()) {
-			errorMessage.append("Can't write file: " + file.getAbsolutePath()
-					+ "\n");
+			errorMessage.append(String.format("Can't write file: %s\n", file.getAbsolutePath()));
 		}
 	}
 
@@ -102,7 +100,7 @@ public class InputData implements DateFormat {
 				errorMessage.append("Not correct report number\n");
 			}
 		} catch (NumberFormatException e) {
-			errorMessage.append(e.toString() + "\n");
+			errorMessage.append(String.format("%s\n", e.toString()));
 		}
 	}
 

@@ -2,7 +2,6 @@ package report;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,13 +25,7 @@ public class ActiveHostsReportGenerator implements
 
 		List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(
 				dict.entrySet());
-		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
-			@Override
-			public int compare(Map.Entry<String, Integer> a,
-					Map.Entry<String, Integer> b) {
-				return a.getValue().compareTo(b.getValue());
-			}
-		});
+		Collections.sort(list, (a, b) -> b.getValue().compareTo(a.getValue()));
 
 		if (ActiveHostsReport.numberOfHosts > list.size())
 			return new ActiveHostsReport(list);

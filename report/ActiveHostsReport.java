@@ -13,14 +13,6 @@ public class ActiveHostsReport {
 		this.hosts = hosts;
 	}
 
-	public List<Map.Entry<String, Integer>> getHosts() {
-		return hosts;
-	}
-
-	public void setHosts(List<Map.Entry<String, Integer>> hosts) {
-		this.hosts = hosts;
-	}
-
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
