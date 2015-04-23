@@ -81,9 +81,9 @@ public class InputData implements DateFormat {
 		return outputFilePath;
 	}
 
-	private void setOutputFilePath(String inputFilePath) {
-		this.outputFilePath = inputFilePath;
-		File file = new File(inputFilePath);
+	private void setOutputFilePath(String outputFilePath) {
+		this.outputFilePath = outputFilePath;
+		File file = new File(outputFilePath);
 		if (!file.canWrite()) {
 			errorMessage.append(String.format("Can't write file: %s\n", file.getAbsolutePath()));
 		}
