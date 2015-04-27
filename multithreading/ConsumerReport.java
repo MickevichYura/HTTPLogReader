@@ -1,8 +1,10 @@
+package multiThreading;
+
 public class ConsumerReport implements Runnable {
 
 	private int count = 0;
-	public static int maxSize = 0;
-	public static int sumSize = 0;
+	public static long maxSize = 0;
+	public static long sumSize = 0;
 
 	ConsumerReport() {
 

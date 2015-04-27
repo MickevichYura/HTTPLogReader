@@ -1,12 +1,23 @@
+package multiThreading;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import main.ILogRecordParser;
+import main.LogRecordParser;
+
 class Consumer implements Runnable {
 
 	private ILogRecordParser parser;
-
-	Consumer() {
-		parser = new LogRecordParser();
-	}
-
+	private PrintWriter out;
 	private int count = 0;
+	
+	Consumer(String path) throws IOException {
+		parser = new LogRecordParser();
+		out = new PrintWriter(new BufferedWriter(new FileWriter(path)));
+	}
 
 	public void run() {
 
@@ -15,6 +26,7 @@ class Consumer implements Runnable {
 
 				consume(CommonData.queueLines.take());
 			}
+			out.close();
 		} catch (InterruptedException ex) {
 		}
 
@@ -22,7 +34,8 @@ class Consumer implements Runnable {
 
 	void consume(String x) throws InterruptedException {
 		++count;
-		CommonData.queueLogs.put(parser.parse(x));
-
+		main.LogRecord log = parser.parse(x);
+		CommonData.queueLogs.put(log);
+		out.println(log);
 	}
 }

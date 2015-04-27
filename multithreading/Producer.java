@@ -1,3 +1,5 @@
+package multiThreading;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,23 +24,25 @@ public class Producer implements Runnable {
 			String line;
 			while (count >= 0 && (line = produce()) != null) {
 				CommonData.queueLines.put(line);
+
 			}
 			reader.close();
-		} catch (InterruptedException ex) {
-			ex.printStackTrace();
-		} catch (IOException e) {
+		}
+		 catch (IOException | InterruptedException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	String produce() {
 		try {
+			String line;
+			do {
+				line = reader.readLine();
+			} while (reader.getLineNumber() < CommonData.startLineNumber);
 			--count;
-			return reader.readLine();
+			return line;
 		} catch (IOException e) {
 			return null;
 		}
 	}
-
 }
