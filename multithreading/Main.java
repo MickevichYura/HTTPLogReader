@@ -11,20 +11,21 @@ public class Main {
 		threadProducer.setName("Producer");
 		Thread threadConsumer1 = new Thread(new Consumer(args[1]));
 		threadConsumer1.setName("Consumer 1");
-		Thread threadConsumerMax = new Thread(new ConsumerReport());
-		threadConsumerMax.setName("Consumer Reports");
+		Thread threadConsumerReports = new Thread(new ConsumerReport());
+		threadConsumerReports.setName("Consumer Reports");
 
 		threadProducer.start();
 		threadConsumer1.start();
-		threadConsumerMax.start();
+		threadConsumerReports.start();
 
 		threadProducer.join();
 		threadConsumer1.join();
-		threadConsumerMax.join();
+		threadConsumerReports.join();
 
-		System.out.println("max " + ConsumerReport.maxSize);
-		System.out.println("sum " + ConsumerReport.sumSize);
-
+		System.out.println(ConsumerReport.totalReplySize);
+		System.out.println(ConsumerReport.maxReplyBytes);
+		System.out.println(ConsumerReport.activeHosts);
+		
 		long after = System.currentTimeMillis();
 		long time = (after - before);
 		System.out.println("time " + time);

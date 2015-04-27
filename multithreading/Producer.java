@@ -33,7 +33,7 @@ public class Producer implements Runnable {
 		}
 	}
 
-	String produce() {
+	private String produce() {
 		try {
 			String line;
 			do {

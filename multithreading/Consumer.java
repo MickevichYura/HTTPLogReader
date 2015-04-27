@@ -32,7 +32,7 @@ class Consumer implements Runnable {
 
 	}
 
-	void consume(String x) throws InterruptedException {
+	private void consume(String x) throws InterruptedException {
 		++count;
 		main.LogRecord log = parser.parse(x);
 		CommonData.queueLogs.put(log);

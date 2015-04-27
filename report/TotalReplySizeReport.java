@@ -2,11 +2,11 @@ package report;
 
 public class TotalReplySizeReport {
 
-	private int totalReplySize;
+	private long totalReplySize;
 
-	public TotalReplySizeReport(int totalRequestSize) {
+	public TotalReplySizeReport(long totalReplySize) {
 		super();
-		this.totalReplySize = totalRequestSize;
+		this.totalReplySize = totalReplySize;
 	}
 
 	@Override
