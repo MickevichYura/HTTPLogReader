@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.BlockingQueue;
 
 import report.ActiveHostsReport;
 import report.MaxReplyBytesReport;
@@ -16,22 +17,27 @@ public class ConsumerReport implements Runnable {
 
 	private int count = 0;
 	private Map<String, Integer> dict;
-	private LogRecord maxSize = new LogRecord();
+	private LogRecord maxSize;
 	private long totalSize = 0;
+	private final int amountOfLines;
+	private BlockingQueue<LogRecord> queueLogs;
 	
 	public static ActiveHostsReport activeHosts;
 	public static TotalReplySizeReport totalReplySize;
 	public static MaxReplyBytesReport maxReplyBytes;
 
-	ConsumerReport() {
+	ConsumerReport(int amountOfLines, BlockingQueue<LogRecord> queueLogs) {
 		dict = new HashMap<String, Integer>();
+		maxSize = new LogRecord();
+		this.amountOfLines = amountOfLines;
+		this.queueLogs = queueLogs;
 	}
 
 	@Override
 	public void run() {
 		try {
-			while (count < CommonData.amountOfLines) {
-				consume(CommonData.queueLogs.take());
+			while (count < amountOfLines) {
+				consume(queueLogs.take());
 			}
 
 			List<Map.Entry<String, Integer>> list = new ArrayList<>(
