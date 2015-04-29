@@ -30,7 +30,8 @@ public class Main {
 				queueLogs));
 		threadConsumer1.setName("Consumer 1");
 		Thread threadConsumerReports = new Thread(new ConsumerReport(
-				data.getAmountOfLines(), queueLogs));
+				data.getAmountOfLines(), queueLogs, data.getStartDate(),
+				data.getEndDate()));
 		threadConsumerReports.setName("Consumer Reports");
 
 		threadProducer.start();

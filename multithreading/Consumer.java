@@ -45,7 +45,9 @@ class Consumer implements Runnable {
 	private void consume(String x) throws InterruptedException {
 		++count;
 		main.LogRecord log = parser.parse(x);
-		queueLogs.put(log);
 		out.println(log);
+		if(ConsumerReport.runnable){
+			queueLogs.put(log);
+		}
 	}
 }
