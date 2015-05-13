@@ -1,6 +1,6 @@
 package report;
 
-public class TotalReplySizeReport {
+public class TotalReplySizeReport implements IReport {
 
 	private long totalReplySize;
 

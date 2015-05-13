@@ -2,7 +2,7 @@ package report;
 
 import main.LogRecord;
 
-public class MaxReplyBytesReport {
+public class MaxReplyBytesReport implements IReport {
 
 	private LogRecord maxReplyBytes;
 
