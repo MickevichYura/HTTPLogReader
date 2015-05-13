@@ -1,12 +1,12 @@
 package report;
 
-public class TotalReplySizeReport {
+public class TotalReplySizeReport implements IReport {
 
-	private int totalReplySize;
+	private long totalReplySize;
 
-	public TotalReplySizeReport(int totalRequestSize) {
+	public TotalReplySizeReport(long totalReplySize) {
 		super();
-		this.totalReplySize = totalRequestSize;
+		this.totalReplySize = totalReplySize;
 	}
 
 	@Override

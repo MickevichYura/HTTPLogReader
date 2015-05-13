@@ -29,4 +29,4 @@
 
 [Генерация бинарного файла] (https://gist.github.com/MickevichYura/b7eaf83dd9e400a9871b)
 
-##### VIII. Многопоточность.
+##### VIII. [Многопоточность.] (https://github.com/MickevichYura/Java/tree/multitasking)

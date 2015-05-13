@@ -8,7 +8,7 @@ public class TotalReplySizeReportGenerator implements
 	@Override
 	public TotalReplySizeReport generateReport(ReportParameters p) {
 
-		int totalRequestSize = 0;
+		long totalRequestSize = 0;
 		for (LogRecord log : p.getLogs()) {
 			totalRequestSize += log.getReplyBytes();
 		}

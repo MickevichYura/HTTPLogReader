@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import report.DateIntervalSearcher;
 import report.IDateIntervalSearcher;
+import report.IReport;
 import report.IReportGenerator;
 import report.ActiveHostsReport;
 import report.TotalReplySizeReport;
@@ -39,28 +40,29 @@ public class LogRecordProcessor implements ILogRecordProcessor {
 
 		logRecords = s.findByDate(data.getStartDate(), data.getEndDate());
 		ReportParameters params = new ReportParameters(logRecords);
-
+		IReportGenerator<ReportParameters, ? extends IReport> report;
 		switch (data.getReportNumber()) {
 		case 1: {
-			IReportGenerator<ReportParameters, ActiveHostsReport> r1 = new ActiveHostsReportGenerator();
-			System.out.println(r1.generateReport(params));
+			report = new ActiveHostsReportGenerator();			
 			break;
 		}
 
 		case 2: {
-			IReportGenerator<ReportParameters, TotalReplySizeReport> r2 = new TotalReplySizeReportGenerator();
-			System.out.println(r2.generateReport(params));
+			report = new TotalReplySizeReportGenerator();
 			break;
 		}
 
 		case 3: {
-			IReportGenerator<ReportParameters, MaxReplyBytesReport> r3 = new MaxReplyBytesReportGenerator();
-			System.out.println(r3.generateReport(params));
+			report = new MaxReplyBytesReportGenerator();
 			break;
 		}
 
-		default:
+		default:{
+			report = null;
 			break;
 		}
+			
+		}
+		System.out.println(report.generateReport(params));
 	}
 }

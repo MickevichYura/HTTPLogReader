@@ -3,7 +3,7 @@ package report;
 import java.util.List;
 import java.util.Map;
 
-public class ActiveHostsReport {
+public class ActiveHostsReport implements IReport {
 
 	public static final int numberOfHosts = 5;
 	private List<Map.Entry<String, Integer>> hosts;
