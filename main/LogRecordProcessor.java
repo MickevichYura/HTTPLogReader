@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
 
@@ -7,9 +8,6 @@ import report.DateIntervalSearcher;
 import report.IDateIntervalSearcher;
 import report.IReport;
 import report.IReportGenerator;
-import report.ActiveHostsReport;
-import report.TotalReplySizeReport;
-import report.MaxReplyBytesReport;
 import report.ActiveHostsReportGenerator;
 import report.TotalReplySizeReportGenerator;
 import report.MaxReplyBytesReportGenerator;
@@ -21,7 +19,8 @@ public class LogRecordProcessor implements ILogRecordProcessor {
 	private IWriter writer;
 	private IReader reader;
 
-	public LogRecordProcessor(ILogRecordParser logRecordParser, IWriter writer, IReader reader) {
+	public LogRecordProcessor(ILogRecordParser logRecordParser, IWriter writer,
+			IReader reader) {
 		this.logRecordParser = logRecordParser;
 		this.writer = writer;
 		this.reader = reader;
@@ -40,29 +39,14 @@ public class LogRecordProcessor implements ILogRecordProcessor {
 
 		logRecords = s.findByDate(data.getStartDate(), data.getEndDate());
 		ReportParameters params = new ReportParameters(logRecords);
-		IReportGenerator<ReportParameters, ? extends IReport> report;
-		switch (data.getReportNumber()) {
-		case 1: {
-			report = new ActiveHostsReportGenerator();			
-			break;
-		}
 
-		case 2: {
-			report = new TotalReplySizeReportGenerator();
-			break;
-		}
-
-		case 3: {
-			report = new MaxReplyBytesReportGenerator();
-			break;
-		}
-
-		default:{
-			report = null;
-			break;
-		}
-			
-		}
+		List<IReportGenerator<ReportParameters, ? extends IReport>> reports = new ArrayList<>();
+		reports.add(new ActiveHostsReportGenerator());
+		reports.add(new TotalReplySizeReportGenerator());
+		reports.add(new MaxReplyBytesReportGenerator());
+		
+		IReportGenerator<ReportParameters, ? extends IReport> report = reports
+				.get(data.getReportNumber() - 1);
 		System.out.println(report.generateReport(params));
 	}
 }
