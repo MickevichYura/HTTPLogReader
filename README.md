@@ -15,7 +15,7 @@
 
 ##### IV. Модифицируйте полученный код, добавив необходимые интерфейсы и описав соответствующие классы.
 
-##### V. Сгенерируйте три отчёта:
+##### V. [Сгенерируйте три отчёта:] (https://github.com/MickevichYura/Java/tree/master/report)
 
 1. Определить пять hostname либо Internet address, с которых было сделано наибольшее количество запросов в заданный промежуток времени.
 2. Определить суммарный размер ответов на запросы в заданный промежуток времени.
@@ -29,4 +29,6 @@
 
 [Генерация бинарного файла] (https://gist.github.com/MickevichYura/b7eaf83dd9e400a9871b)
 
-##### VIII. [Многопоточность.] (https://github.com/MickevichYura/Java/tree/multitasking)
+##### VIII. [Многопоточность.] (https://github.com/MickevichYura/Java/tree/master/multithreading)
+
+##### IX. [База данных.] (https://github.com/MickevichYura/Java/tree/master/database)
