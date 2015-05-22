@@ -10,7 +10,7 @@ public class TotalReplySizeReportGenerator implements
 
 		long totalRequestSize = 0;
 		for (LogRecord log : p.getLogs()) {
-			totalRequestSize += log.getReplyBytes();
+			totalRequestSize += log.getReplySize();
 		}
 		return new TotalReplySizeReport(totalRequestSize);
 	}

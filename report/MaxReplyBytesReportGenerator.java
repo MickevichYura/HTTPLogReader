@@ -10,8 +10,8 @@ public class MaxReplyBytesReportGenerator implements
 	@Override
 	public MaxReplyBytesReport generateReport(ReportParameters p) {
 		LogRecord max = Collections.max(p.getLogs(),
-				(log1, log2) -> Integer.compare(log1.getReplyBytes(),
-                        log2.getReplyBytes()));
+				(log1, log2) -> Integer.compare(log1.getReplySize(),
+                        log2.getReplySize()));
 		return new MaxReplyBytesReport(max);
 	}
 }

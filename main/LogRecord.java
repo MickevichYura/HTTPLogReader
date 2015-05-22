@@ -42,18 +42,18 @@ public class LogRecord {
 		this.replyCode = replyCode;
 	}
 
-	public int getReplyBytes() {
+	public int getReplySize() {
 		return replySize;
 	}
 
-	public void setReplyBytes(int replyBytes) {
+	public void setReplySize(int replyBytes) {
 		this.replySize = replyBytes;
 	}
 
 	@Override
 	public String toString() {
 		return "host=" + host + ", timestamp=" + timestamp + ", request="
-				+ request + ", replyCode=" + replyCode + ", replyBytes="
+				+ request + ", replyCode=" + replyCode + ", replySize="
 				+ replySize;
 	}
 

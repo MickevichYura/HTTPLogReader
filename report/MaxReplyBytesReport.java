@@ -13,6 +13,6 @@ public class MaxReplyBytesReport implements IReport {
 
 	@Override
 	public String toString() {
-		return "maxReplyBytes = " + maxReplyBytes.getReplyBytes();
+		return "maxReplyBytes = " + maxReplyBytes.getReplySize();
 	}
 }

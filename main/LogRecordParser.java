@@ -23,15 +23,17 @@ public class LogRecordParser implements ILogRecordParser {
 				lastIndexOfQuotationMark + 2, lastIndexOfSpace)));
 
 		try {
-			logRecord.setReplyBytes(Integer.parseInt(line
+			logRecord.setReplySize(Integer.parseInt(line
 					.substring(lastIndexOfSpace + 1)));
 		} catch (NumberFormatException e) {
-			logRecord.setReplyBytes(0);
+			logRecord.setReplySize(0);
 		}
 
-		logRecord.setTimestamp(DATE_FORMAT.parse(line,
-				new ParsePosition(line.indexOf(DATE_FORMAT_PATTERN.charAt(0)))));
-
+		logRecord
+				.setTimestamp(DATE_FORMAT.parse(
+						line,
+						new ParsePosition(line.indexOf(DATE_FORMAT_PATTERN
+								.charAt(0)))));
 		return logRecord;
 	}
 

@@ -72,8 +72,8 @@ public class ConsumerReport implements Runnable {
 		++count;
 		if (!(log.getTimestamp().before(startDate) || log.getTimestamp().after(
 				finishDate))) {
-			int temp = log.getReplyBytes();
-			if (temp > maxSize.getReplyBytes()) {
+			int temp = log.getReplySize();
+			if (temp > maxSize.getReplySize()) {
 				maxSize = log;
 			}
 			totalSize += temp;
