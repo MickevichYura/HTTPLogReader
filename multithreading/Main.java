@@ -15,34 +15,32 @@ public class Main {
 			IOException, ClassNotFoundException, SQLException {
 		long before = System.currentTimeMillis();
 		
-		String databasePath = "D:\\Dropbox\\logs.s3db";	
-		readFromDatabase(databasePath);
+		InputData data = new InputData(args);
+		String databasePath = "D:\\logs.s3db";	
+			
+		runThreads(data);
+		readFromDatabase(databasePath, data);
 		
-		//runThreads(args);
-		
-
 		long after = System.currentTimeMillis();
 		long time = (after - before);
-		System.out.println("time " + time);
-
+		System.out.println("time " + time);	
 	}
 
-	public static void readFromDatabase(String path) throws ClassNotFoundException,
+	public static void readFromDatabase(String path, InputData data) throws ClassNotFoundException,
 			SQLException {
 		DatabaseConnect.connectToDatabase(path);
 		DatabaseConnect.createDatabase();
 
 		String query = "sum(replySize)";
-		DatabaseConnect.ReadDatabase(query);
+		DatabaseConnect.ReadDatabase(query, data);
 		query = "max(replySize)";
-		DatabaseConnect.ReadDatabase(query);
+		DatabaseConnect.ReadDatabase(query, data);
 		System.out.println();
 
 		DatabaseConnect.CloseDatabase();
 	}
 
-	public static void runThreads(String[] args) throws IOException, InterruptedException {
-		InputData data = new InputData(args);
+	public static void runThreads(InputData data) throws IOException, InterruptedException {
 
 		final BlockingQueue<String> queueLines = new ArrayBlockingQueue<>(10000);
 

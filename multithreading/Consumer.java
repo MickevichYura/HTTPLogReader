@@ -34,7 +34,7 @@ class Consumer implements Runnable {
 	public void run() {
 
 		try {
-			//DatabaseConnect.connectToDatabase("D:\\Dropbox\\logs.s3db");
+			//DatabaseConnect.connectToDatabase("D:\\logs.s3db");
 			//DatabaseConnect.createDatabase();
 			while (count < amountOfLines) {
 
