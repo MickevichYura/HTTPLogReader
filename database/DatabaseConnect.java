@@ -32,8 +32,7 @@ public class DatabaseConnect implements DateFormat {
 
 	}
 
-	public static void WriteDatabase(LogRecord log, int count)
-			throws SQLException {
+	public static void writeDatabase(LogRecord log) throws SQLException {
 
 		Timestamp sqlTimestamp = new Timestamp(log.getTimestamp().getTime());
 		statement
@@ -44,7 +43,7 @@ public class DatabaseConnect implements DateFormat {
 								log.getReplySize()));
 	}
 
-	public static void ReadDatabase(String query, InputData data)
+	public static void readDatabase(String query, InputData data)
 			throws ClassNotFoundException, SQLException {
 
 		Timestamp sqlTimestamp1 = new Timestamp(data.getStartDate().getTime());
@@ -62,7 +61,7 @@ public class DatabaseConnect implements DateFormat {
 		}
 	}
 
-	public static void CloseDatabase() throws ClassNotFoundException,
+	public static void closeDatabase() throws ClassNotFoundException,
 			SQLException {
 		connection.close();
 		statement.close();

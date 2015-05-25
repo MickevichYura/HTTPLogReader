@@ -41,17 +41,16 @@ class Consumer implements Runnable {
 				consume(queueLines.take());
 			}
 			out.close();
-			//DatabaseConnect.CloseDatabase();
-		} catch (InterruptedException | SQLException ex) {
+			DatabaseConnect.closeDatabase();
+		} catch (InterruptedException | SQLException | ClassNotFoundException ex) {
 		}
-
 	}
 
 	private void consume(String x) throws InterruptedException, SQLException {
 		++count;
 		main.LogRecord log = parser.parse(x);
 		//out.println(log);
-		//DatabaseConnect.WriteDatabase(log, count);
+		//DatabaseConnect.writeDatabase(log);
 		if (ConsumerReport.runnable) {
 			queueLogs.put(log);
 		}

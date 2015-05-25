@@ -18,7 +18,7 @@ public class Main {
 		InputData data = new InputData(args);
 		String databasePath = "D:\\logs.s3db";	
 			
-		runThreads(data);
+		//runThreads(data);
 		readFromDatabase(databasePath, data);
 		
 		long after = System.currentTimeMillis();
@@ -32,12 +32,12 @@ public class Main {
 		DatabaseConnect.createDatabase();
 
 		String query = "sum(replySize)";
-		DatabaseConnect.ReadDatabase(query, data);
+		DatabaseConnect.readDatabase(query, data);
 		query = "max(replySize)";
-		DatabaseConnect.ReadDatabase(query, data);
+		DatabaseConnect.readDatabase(query, data);
 		System.out.println();
 
-		DatabaseConnect.CloseDatabase();
+		DatabaseConnect.closeDatabase();
 	}
 
 	public static void runThreads(InputData data) throws IOException, InterruptedException {
