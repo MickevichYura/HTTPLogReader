@@ -33,4 +33,4 @@
 
 ##### IX. [База данных.] (https://github.com/MickevichYura/Java/tree/master/database)
 
-[Библиотека для работы с базой данный] (http://www.java2s.com/Code/Jar/s/Downloadsqlitejdbc372jar.htm
+[Библиотека для работы с базой данный] (http://www.java2s.com/Code/Jar/s/Downloadsqlitejdbc372jar.htm)
